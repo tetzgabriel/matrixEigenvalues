@@ -4,7 +4,6 @@ var calculo = "central";
 function getPontos(selectObject) {
     pontos = selectObject.value;
     document.getElementById("calculo").disabled = false;  
-    console.log(pontos)
 }
 
 function getCalculo(selectObject) {
@@ -14,7 +13,6 @@ function getCalculo(selectObject) {
 }
 
 function createTable() {
-    console.log("Pontos =" + pontos)
     if(pontos == "2"){
         if(calculo == "progressiva") {
             document.getElementById("error").style.display = "none";  
@@ -123,9 +121,29 @@ function calculaRegr2() {
 }
 
 function calculaProg3() {
-    console.log("Calcula")
+    const x = document.getElementById("xProg3").value;
+    const fx = document.getElementById("f(x)Prog3").value;
+
+    const xi = document.getElementById("x+iProg3").value;
+    const fxi = document.getElementById("f(x+i)Prog3").value;
+
+    const x2i = document.getElementById("x+2iProg3").value;
+    const fx2i = document.getElementById("f(x+2i)Prog3").value;
+
+    var result = 0
+    console.log(result)
 }
 
 function calculaRegr3() {
-    console.log("Calcula")
+    const x = document.getElementById("xRegr3").value;
+    const fx = document.getElementById("f(x)Regr3").value;
+
+    const xi = document.getElementById("x-iRegr3").value;
+    const fxi = document.getElementById("f(x-i)Regr3").value;
+
+    const x2i = document.getElementById("x-2iRegr3").value;
+    const fx2i = document.getElementById("f(x-2i)Regr3").value;
+
+    var result = 0
+    console.log(result)
 }
