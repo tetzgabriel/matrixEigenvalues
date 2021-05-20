@@ -49,3 +49,8 @@ input {
 .result {
     margin-top: 15px;
 }
+
+.bot {
+    background-color: #FB7274;
+    height: 70px;
+}
