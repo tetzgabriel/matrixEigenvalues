@@ -147,5 +147,6 @@ function calculaRegr3() {
 }
 
 function showResult(result) {
-    console.log(result)
+    document.getElementById("result-section").style.display = "flex";
+    document.getElementById("result").textContent += result;
 }

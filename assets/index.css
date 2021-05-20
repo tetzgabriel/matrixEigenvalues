@@ -31,7 +31,7 @@ body {
     height: 100px;
 }
 
-.inputs, .error-section {
+.inputs, .error-section, .result-section {
     display: flex;
     flex: 1;
     justify-content: space-evenly;
@@ -44,4 +44,8 @@ input {
 .inputGroup {
     display: flex;
     flex-direction: column;
+}
+
+.result {
+    margin-top: 15px;
 }
