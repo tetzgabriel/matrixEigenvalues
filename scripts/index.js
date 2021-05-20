@@ -101,7 +101,14 @@ function calculaProg2() {
 }
 
 function calculaCent2() {
-    console.log("Calcula")
+    const ix = document.getElementById("x-iCent2").value;
+    const fix = document.getElementById("f(x-i)Cent2").value;
+
+    const xi = document.getElementById("x+iCent2").value;
+    const fxi = document.getElementById("f(x+i)Cent2").value;
+
+    var result = (fxi - fix)/(xi - ix);
+    console.log(result)
 }
 
 function calculaRegr2() {
