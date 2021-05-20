@@ -43,45 +43,62 @@
                 <input type="number" placeholder="f(x)" id="f(x)Prog2">
             </div>
             <div class="inputGroup">
-                <input type="number" placeholder="x+1" id="x+1Prog2">
-                <input type="number" placeholder="f(x+1)" id="f(x+1)Prog2">
+                <input type="number" placeholder="x+i" id="x+iProg2">
+                <input type="number" placeholder="f(x+i)" id="f(x+i)Prog2">
             </div>
         </div>
 
         <div class="inputs" id="2pontosCent" style="display: none;">
             <div class="inputGroup">
-                <input type="number" placeholder="x-1" id="x-1Cent2">
-                <input type="number" placeholder="f(x-1)" id="f(x)Cent2">
+                <input type="number" placeholder="x-i" id="x-iCent2">
+                <input type="number" placeholder="f(x-i)" id="f(x)Cent2">
             </div>
             <div class="inputGroup">
-                <input type="number" placeholder="x+1" id="x+1Cent2">
-                <input type="number" placeholder="f(x+1)" id="f(x+1)Cent2">
+                <input type="number" placeholder="x+i" id="x+iCent2">
+                <input type="number" placeholder="f(x+i)" id="f(x+i)Cent2">
             </div>
         </div>
         
         <div class="inputs" id="2pontosRegr" style="display: none;">
             <div class="inputGroup">
-                <input type="number" placeholder="x-1" id="x-1Regr2">
-                <input type="number" placeholder="f(x-1)" id="f(x-1)Regr2">
+                <input type="number" placeholder="x-i" id="x-iRegr2">
+                <input type="number" placeholder="f(x-i)" id="f(x-i)Regr2">
             </div>
             <div class="inputGroup">
                 <input type="number" placeholder="x" id="xRegr2">
                 <input type="number" placeholder="f(x)" id="f(x)Regr2">
             </div>
         </div>
-        <div class="inputs" id="3pontos" style="display: none;">
-            <div class="inputGroup" id="2inputXTres">
-                <input type="number" placeholder="x-2" id="x-2Tres">
-                <input type="number" placeholder="f(x-2)" id="f(x-2)Tres">
+        <div class="inputs" id="3pontosProg" style="display: none;">
+            <div class="inputGroup">
+                <input type="number" placeholder="x" id="xProg3">
+                <input type="number" placeholder="f(x)" id="f(x)Prog3">
             </div>
-            <div class="inputGroup" id="1inputXTres">
-                <input type="number" placeholder="x-1" id="x-1Tres">
-                <input type="number" placeholder="f(x-1)" id="f(x-1)Tres">
+            <div class="inputGroup">
+                <input type="number" placeholder="x+i" id="x+1Prog3">
+                <input type="number" placeholder="f(x+i)" id="f(x+i)Prog3">
             </div>
-            <div class="inputGroup" id="inputXTres">
-                <input type="number" placeholder="x" id="xTres">
-                <input type="number" placeholder="f(x)" id="f(x)Tres">
+            <div class="inputGroup">
+                <input type="number" placeholder="x+2i" id="x+2iProg3">
+                <input type="number" placeholder="f(x+2i)" id="f(x+2i)Prog3">
             </div>
+        </div>
+        <div class="inputs" id="3pontosRegr" style="display: none;">
+            <div class="inputGroup">
+                <input type="number" placeholder="x-2i" id="x-2iRegr3">
+                <input type="number" placeholder="f(x-2i)" id="f(x-2i)Regr3">
+            </div>
+            <div class="inputGroup">
+                <input type="number" placeholder="x-i" id="x-1Regr3">
+                <input type="number" placeholder="f(x-i)" id="f(x-i)Regr3">
+            </div>
+            <div class="inputGroup">
+                <input type="number" placeholder="x" id="xRegr3">
+                <input type="number" placeholder="f(x)" id="f(x)Regr3">
+            </div>
+        </div>
+        <div class="error-section" id="error" style="display: none;">
+            <h3>Selecione outro método de cálculo</h3>
         </div>
         <button class="btn btn-submit" type="button" onclick="calcula()">Calcular</button>
     </form>
