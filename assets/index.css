@@ -1,0 +1,46 @@
+body {
+    background-color: #90BE6D;
+    color: #2B3A48;
+    height: 100vh;
+}
+
+.navbar {
+    background-color: #F94144;
+}
+
+.btn, .dropdown-menu {
+    background-color: #43AA8B;
+}
+
+.btn-submit {
+    background-color: #4D908E;
+    align-self: center;
+    width: 100px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+}
+
+.inputs {
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+}
+
+input {
+    text-align: center;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}

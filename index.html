@@ -1,16 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primeiro Trabalho Computacional</title>
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/index.css">
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <title>Primeiro Trabalho Computacional</title>
+  </head>
+  <body>
+    <nav class="navbar">
+        <div class="container-fluid">
+          <span class="navbar-brand">
+            Cálculo de Aproximação de Derivadas - Gabriel Tetzlaf e Pedro Potenza
+          </span>
+        </div>
+    </nav>
+
+    <form class="form">
+        <div class="dropdown-section">
+            <div class="dropdown">
+                <label for="pontos">Quantidade de pontos:</label>
+                <select name="pontos" id="pontos" onchange="getPontos(this)">
+                    <option value="" default></option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label for="calculo">Tipo de Cálculo:</label>
+                <select name="calculo" id="calculo" onchange="getCalculo(this)" disabled>
+                    <option value="" default></option>
+                    <option value="regressiva">Diferença Regressiva</option>
+                    <option value="central">Diferença Central</option>
+                    <option value="progressiva">Diferença Progressiva</option>
+                </select>
+            </div>
+        </div>
+        <div class="inputs" id="2pontos" style="display: none;">
+            <div class="inputGroup" id="1inputX">
+                <input type="text" placeholder="x-1" id="x-1">
+                <input type="text" placeholder="f(x-1)" id="f(x-1)">
+            </div>
+            <div class="inputGroup" id="inputX">
+                <input type="text" placeholder="x" id="x">
+                <input type="text" placeholder="f(x)" id="f(x)">
+            </div>
+            <div class="inputGroup" id="inputX1">
+                <input type="text" placeholder="x+1" id="x+1">
+                <input type="text" placeholder="f(x+1)" id="f(x+1)">
+            </div>
+        </div>
+        <div class="inputs" id="3pontos" style="display: none;">
+            <div class="inputGroup" id="2inputXTres">
+                <input type="text" placeholder="x-2" id="x-2Tres">
+                <input type="text" placeholder="f(x-2)" id="f(x-2)Tres">
+            </div>
+            <div class="inputGroup" id="1inputXTres">
+                <input type="text" placeholder="x-1" id="x-1Tres">
+                <input type="text" placeholder="f(x-1)" id="f(x-1)Tres">
+            </div>
+            <div class="inputGroup" id="inputXTres">
+                <input type="text" placeholder="x" id="xTres">
+                <input type="text" placeholder="f(x)" id="f(x)Tres">
+            </div>
+        </div>
+        <button class="btn btn-submit" type="button" onclick="calcula()">Calcular</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="scripts/index.js"></script>
-</head>
-<body>
-    
-</body>
+    </body>
 </html>
