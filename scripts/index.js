@@ -127,7 +127,6 @@ function calculaProg3() {
     const xi = document.getElementById("x+iProg3").value;
     const fxi = document.getElementById("f(x+i)Prog3").value;
 
-    const x2i = document.getElementById("x+2iProg3").value;
     const fx2i = document.getElementById("f(x+2i)Prog3").value;
 
     var result = ((-3*fx)+(4*fxi) - fx2i)/(2*(xi - x));
@@ -142,7 +141,6 @@ function calculaRegr3() {
     const xi = document.getElementById("x-iRegr3").value;
     const fxi = document.getElementById("f(x-i)Regr3").value;
 
-    const x2i = document.getElementById("x-2iRegr3").value;
     const fx2i = document.getElementById("f(x-2i)Regr3").value;
 
     var result = (fx2i - 4*fxi + 3*fx)/(2*(x - xi));
