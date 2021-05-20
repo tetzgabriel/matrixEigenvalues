@@ -37,32 +37,50 @@
                 </select>
             </div>
         </div>
-        <div class="inputs" id="2pontos" style="display: none;">
-            <div class="inputGroup" id="1inputX">
-                <input type="text" placeholder="x-1" id="x-1">
-                <input type="text" placeholder="f(x-1)" id="f(x-1)">
+        <div class="inputs" id="2pontosProg" style="display: none;">
+            <div class="inputGroup">
+                <input type="number" placeholder="x" id="xProg2">
+                <input type="number" placeholder="f(x)" id="f(x)Prog2">
             </div>
-            <div class="inputGroup" id="inputX">
-                <input type="text" placeholder="x" id="x">
-                <input type="text" placeholder="f(x)" id="f(x)">
+            <div class="inputGroup">
+                <input type="number" placeholder="x+1" id="x+1Prog2">
+                <input type="number" placeholder="f(x+1)" id="f(x+1)Prog2">
             </div>
-            <div class="inputGroup" id="inputX1">
-                <input type="text" placeholder="x+1" id="x+1">
-                <input type="text" placeholder="f(x+1)" id="f(x+1)">
+        </div>
+
+        <div class="inputs" id="2pontosCent" style="display: none;">
+            <div class="inputGroup">
+                <input type="number" placeholder="x-1" id="x-1Cent2">
+                <input type="number" placeholder="f(x-1)" id="f(x)Cent2">
+            </div>
+            <div class="inputGroup">
+                <input type="number" placeholder="x+1" id="x+1Cent2">
+                <input type="number" placeholder="f(x+1)" id="f(x+1)Cent2">
+            </div>
+        </div>
+        
+        <div class="inputs" id="2pontosRegr" style="display: none;">
+            <div class="inputGroup">
+                <input type="number" placeholder="x-1" id="x-1Regr2">
+                <input type="number" placeholder="f(x-1)" id="f(x-1)Regr2">
+            </div>
+            <div class="inputGroup">
+                <input type="number" placeholder="x" id="xRegr2">
+                <input type="number" placeholder="f(x)" id="f(x)Regr2">
             </div>
         </div>
         <div class="inputs" id="3pontos" style="display: none;">
             <div class="inputGroup" id="2inputXTres">
-                <input type="text" placeholder="x-2" id="x-2Tres">
-                <input type="text" placeholder="f(x-2)" id="f(x-2)Tres">
+                <input type="number" placeholder="x-2" id="x-2Tres">
+                <input type="number" placeholder="f(x-2)" id="f(x-2)Tres">
             </div>
             <div class="inputGroup" id="1inputXTres">
-                <input type="text" placeholder="x-1" id="x-1Tres">
-                <input type="text" placeholder="f(x-1)" id="f(x-1)Tres">
+                <input type="number" placeholder="x-1" id="x-1Tres">
+                <input type="number" placeholder="f(x-1)" id="f(x-1)Tres">
             </div>
             <div class="inputGroup" id="inputXTres">
-                <input type="text" placeholder="x" id="xTres">
-                <input type="text" placeholder="f(x)" id="f(x)Tres">
+                <input type="number" placeholder="x" id="xTres">
+                <input type="number" placeholder="f(x)" id="f(x)Tres">
             </div>
         </div>
         <button class="btn btn-submit" type="button" onclick="calcula()">Calcular</button>
