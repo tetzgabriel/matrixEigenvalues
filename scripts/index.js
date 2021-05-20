@@ -95,7 +95,7 @@ function calculaProg2() {
     const fxi = document.getElementById("f(x+i)Prog2").value;
 
     var result = (fxi - fx)/(xi - x);
-    console.log(result)
+    showResult(result);
 }
 
 function calculaCent2() {
@@ -106,7 +106,7 @@ function calculaCent2() {
     const fxi = document.getElementById("f(x+i)Cent2").value;
 
     var result = (fxi - fix)/(xi - ix);
-    console.log(result)
+    showResult(result);
 }
 
 function calculaRegr2() {
@@ -117,7 +117,7 @@ function calculaRegr2() {
     const fx = document.getElementById("f(x)Regr2").value;
 
     var result = (fx - fix)/(x - ix);
-    console.log(result)
+    showResult(result);
 }
 
 function calculaProg3() {
@@ -130,8 +130,7 @@ function calculaProg3() {
     const fx2i = document.getElementById("f(x+2i)Prog3").value;
 
     var result = ((-3*fx)+(4*fxi) - fx2i)/(2*(xi - x));
-
-    console.log(result)
+    showResult(result);
 }
 
 function calculaRegr3() {
@@ -144,6 +143,9 @@ function calculaRegr3() {
     const fx2i = document.getElementById("f(x-2i)Regr3").value;
 
     var result = (fx2i - 4*fxi + 3*fx)/(2*(x - xi));
+    showResult(result);
+}
 
+function showResult(result) {
     console.log(result)
 }
