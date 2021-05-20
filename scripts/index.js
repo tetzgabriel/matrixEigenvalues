@@ -90,7 +90,14 @@ function calcula() {
 }
 
 function calculaProg2() {
-    console.log("Calcula")
+    const x = document.getElementById("xProg2").value;
+    const fx = document.getElementById("f(x)Prog2").value;
+
+    const xi = document.getElementById("x+iProg2").value;
+    const fxi = document.getElementById("f(x+i)Prog2").value;
+
+    var result = (fxi - fx)/(xi - x);
+    console.log(result)
 }
 
 function calculaCent2() {
