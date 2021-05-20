@@ -9,6 +9,7 @@ body {
 }
 
 .btn, .dropdown-menu {
+    margin-top: 20px;
     background-color: #43AA8B;
 }
 
