@@ -88,35 +88,58 @@ function calcula() {
 }
 
 function calculaProg2() {
+    var result;
+
     const x = document.getElementById("xProg2").value;
     const fx = document.getElementById("f(x)Prog2").value;
 
     const xi = document.getElementById("x+iProg2").value;
     const fxi = document.getElementById("f(x+i)Prog2").value;
-
-    var result = (fxi - fx)/(xi - x);
+    if (x == "" || fx == "" || xi == "" || fxi == "") {
+        document.getElementById("result-explanation").style.display = "block";
+        result = "(f(x+i) - f(x))/((x+i) - x)";
+    } else {
+        document.getElementById("result-explanation").style.display = "none";
+        result = (fxi - fx)/(xi - x);
+    }
     showResult(result);
 }
 
 function calculaCent2() {
+    var result;
+
     const ix = document.getElementById("x-iCent2").value;
     const fix = document.getElementById("f(x-i)Cent2").value;
 
     const xi = document.getElementById("x+iCent2").value;
     const fxi = document.getElementById("f(x+i)Cent2").value;
 
-    var result = (fxi - fix)/(xi - ix);
+    if (ix == "" || fix == "" || xi == "" || fxi == "") {
+        document.getElementById("result-explanation").style.display = "block";
+        result = "(f(x+i) - f(x-i))/((x+i) - (x-i))";
+    } else {
+        document.getElementById("result-explanation").style.display = "none";
+        result = (fxi - fix)/(xi - ix);
+    }
     showResult(result);
 }
 
 function calculaRegr2() {
+    var result;
+
     const ix = document.getElementById("x-iRegr2").value;
     const fix = document.getElementById("f(x-i)Regr2").value;
 
     const x = document.getElementById("xRegr2").value;
     const fx = document.getElementById("f(x)Regr2").value;
 
-    var result = (fx - fix)/(x - ix);
+    if (x == "" || fx == "" || ix == "" || fix == "") {
+        document.getElementById("result-explanation").style.display = "block";
+        result = "(f(x) - f(x-i))/(x - (x-i))";
+    } else {
+        document.getElementById("result-explanation").style.display = "none";
+        result = (fx - fix)/(x - ix);
+    }
     showResult(result);
 }
 
