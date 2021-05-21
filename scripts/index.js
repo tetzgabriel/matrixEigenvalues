@@ -121,6 +121,8 @@ function calculaRegr2() {
 }
 
 function calculaProg3() {
+    var result;
+
     const x = document.getElementById("xProg3").value;
     const fx = document.getElementById("f(x)Prog3").value;
 
@@ -129,11 +131,19 @@ function calculaProg3() {
 
     const fx2i = document.getElementById("f(x+2i)Prog3").value;
 
-    var result = ((-3*fx)+(4*fxi) - fx2i)/(2*(xi - x));
+    if(x == "" || fx == "" || xi == "" || fxi == "" || fx2i == "") {
+        document.getElementById("result-explanation").style.display = "block";
+        result = "(-3f(x)+4f(x+1)-f(x+2i))/2h";
+    } else {
+        document.getElementById("result-explanation").style.display = "none";
+        result = ((-3*fx)+(4*fxi) - fx2i)/(2*(xi - x));
+    }
     showResult(result);
 }
 
 function calculaRegr3() {
+    var result;
+
     const x = document.getElementById("xRegr3").value;
     const fx = document.getElementById("f(x)Regr3").value;
 
@@ -142,11 +152,19 @@ function calculaRegr3() {
 
     const fx2i = document.getElementById("f(x-2i)Regr3").value;
 
-    var result = (fx2i - 4*fxi + 3*fx)/(2*(x - xi));
+    
+    if(x == "" || fx == "" || xi == "" || fxi == "" || fx2i == "") {
+        result = "(f(x-2i) - 4f(x-i) + 3f(x))/2h";
+        document.getElementById("result-explanation").style.display = "block";
+    } else {
+        document.getElementById("result-explanation").style.display = "none";
+        result = (fx2i - 4*fxi + 3*fx)/(2*(x - xi));
+    }
+
     showResult(result);
 }
 
 function showResult(result) {
-    document.getElementById("result-section").style.display = "flex";
+    document.getElementById("result-section").style.display = "block";
     document.getElementById("result").textContent = "Resultado: " + result;
 }
