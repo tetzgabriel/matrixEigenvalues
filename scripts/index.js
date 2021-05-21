@@ -81,6 +81,8 @@ function calcula() {
             calculaProg3();
         } else if(calculo == "central") {
             alert("Selecione um método válido");
+            document.getElementById("result-explanation").style.display = "none";
+            document.getElementById("result-section").style.display = "none";
         } else if(calculo == "regressiva") {
             calculaRegr3();
         }
