@@ -3,7 +3,6 @@ var precisao = 0;
 
 function getPontos(selectObject) {
     pontos = selectObject.value;
-    document.getElementById("calculo").disabled = false;  
 }
 
 function getCalculo(selectObject) {
@@ -18,7 +17,8 @@ function getPrecision(selectObject) {
 }
 
 function createTable() {
-    
+    document.getElementById("matrix").style.display = "block";
+    document.getElementById("botao").disabled = false;  
 }
 
 function calcula() {
