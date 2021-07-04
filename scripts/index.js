@@ -22,24 +22,14 @@ function createTable() {
 }
 
 function calcula() {
-    if(pontos == "2"){
-        if(calculo == "progressiva") {
-            calculaProg2();
-        } else if(calculo == "central") {
-            calculaCent2();
-        } else if(calculo == "regressiva") {
-            calculaRegr2();
-        }
+    if (calculo == "") {
+        
+    } else if (calculo == "") {
+        
+    } else if (calculo == "") {
+
     } else {
-        if(calculo == "progressiva") {
-            calculaProg3();
-        } else if(calculo == "central") {
-            alert("Selecione um método válido");
-            document.getElementById("result-explanation").style.display = "none";
-            document.getElementById("result-section").style.display = "none";
-        } else if(calculo == "regressiva") {
-            calculaRegr3();
-        }
+        
     }
 }
 
