@@ -17,7 +17,7 @@ function getPrecision(selectObject) {
 }
 
 function createTable() {
-    document.getElementById("matrix").style.display = "block";
+    document.getElementById("matrix").style.display = "flex";
     document.getElementById("botao").disabled = false;  
 }
 
@@ -29,7 +29,7 @@ function calcula() {
     } else if (calculo == "") {
 
     } else {
-        
+
     }
 }
 

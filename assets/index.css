@@ -34,7 +34,7 @@ body {
 .inputs, .error-section, .result-section {
     display: flex;
     flex: 1;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 input {
