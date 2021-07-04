@@ -38,7 +38,13 @@ body {
     justify-content: center;
 }
 
-input {
+.error-section, .result-section {
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.input {
     text-align: center;
 }
 
