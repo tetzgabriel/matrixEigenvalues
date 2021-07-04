@@ -1,11 +1,11 @@
 body {
-    background-color: #90BE6D;
+    background-color: #33658A;
     color: #2B3A48;
     height: 100vh;
 }
 
 .navbar {
-    background-color: #F94144;
+    background-color: #F26419;
 }
 
 .btn, .dropdown-menu {
@@ -14,7 +14,7 @@ body {
 }
 
 .btn-submit {
-    background-color: #4D908E;
+    background-color: #A7BED3;
     align-self: center;
     width: 100px;
 }
@@ -51,6 +51,6 @@ input {
 }
 
 .bot {
-    background-color: #BAD6A5;
+    background-color: #A7BED3;
     height: 70px;
 }
