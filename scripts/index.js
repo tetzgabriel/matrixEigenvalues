@@ -39,9 +39,6 @@ function resetAntAprox() {
     ant_aprox1 = 0;
     ant_aprox2 = 0;
     ant_aprox3 = 0;
-    console.log(ant_aprox1)
-    console.log(ant_aprox2)
-    console.log(ant_aprox3)
 }
 
 function calcula() {
@@ -58,7 +55,7 @@ function calcula() {
     if (calculo == "potencia") {
         
         resetAntAprox();
-        calculaPotencia(1, 1, 1, 0);
+        calculaPotencia(1, 1, 1, 0, 0);
     } else if (calculo == "inversa") {
         
         resetAntAprox();
@@ -72,7 +69,7 @@ function calcula() {
     }
 }
 
-function calculaPotencia(y1, y2, y3, k) {
+function calculaPotencia(y1, y2, y3, k, p) {
     var z1,z2,z3;
     var erro1, erro2, erro3;
     var alpha; 
@@ -112,35 +109,62 @@ function calculaPotencia(y1, y2, y3, k) {
 
         if(erro1 <= erro2 && erro1 <= erro3){
             if(erro1 < precisao){
-                showResult(aprox1,y1, y2, y3);
+
+                if(p){
+                    showResult(1/aprox1,y1, y2, y3);
+                } else {
+                    showResult(aprox1,y1, y2, y3);
+                }
+
                 return;
             }else{
                 ant_aprox1 = aprox1;
                 ant_aprox2 = aprox2;
                 ant_aprox3 = aprox3;
-                calculaPotencia(y1, y2, y3, 1);
+
+                if(p){
+                    calculaPotencia(y1, y2, y3, 1, 1);
+                } else {
+                    calculaPotencia(y1, y2, y3, 1, 0);
+                }
             }
         }
         if(erro2 <= erro1 && erro2 <= erro3){
             if(erro2 < precisao){
-                showResult(aprox2,y1, y2, y3);
+                if(p){
+                    showResult(1/aprox2,y1, y2, y3);
+                } else {
+                    showResult(aprox2,y1, y2, y3);
+                }
                 return;
             }else{
                 ant_aprox1 = aprox1;
                 ant_aprox2 = aprox2;
                 ant_aprox3 = aprox3;
-                calculaPotencia(y1, y2, y3, 1);
+                if(p){
+                    calculaPotencia(y1, y2, y3, 1, 1);
+                } else {
+                    calculaPotencia(y1, y2, y3, 1, 0);
+                }
             }
         }
         if(erro3 <= erro1 && erro3 <= erro2){
             if(erro3 < precisao){
-                showResult(aprox3,y1, y2, y3, 1);
+                if(p){
+                    showResult(1/aprox3,y1, y2, y3);
+                } else {
+                    showResult(aprox3,y1, y2, y3);
+                }
                 return;
             }else{
                 ant_aprox1 = aprox1;
                 ant_aprox2 = aprox2;
                 ant_aprox3 = aprox3;
-                calculaPotencia(y1, y2, y3);
+                if(p){
+                    calculaPotencia(y1, y2, y3, 1, 1);
+                } else {
+                    calculaPotencia(y1, y2, y3, 1, 0);
+                }
             }
         }
     } else { //se for a primeira iteracao
@@ -148,15 +172,50 @@ function calculaPotencia(y1, y2, y3, k) {
         ant_aprox1 = aprox1;
         ant_aprox2 = aprox2;
         ant_aprox3 = aprox3;
-        calculaPotencia(y1, y2, y3, 1);
+        if(p){
+            calculaPotencia(y1, y2, y3, 1, 1);
+        } else {
+            calculaPotencia(y1, y2, y3, 1, 0);
+        }
     }
 
 }
 
 function calculaInversa() {
-    var result;
+  
+    {
+    var det;
+    var c11, c12, c13, c21, c22, c23, c31, c32, c33;
 
-    showResult(result, 0, 0, 0);
+    //Fazendo a matriz inversa
+    det = x11*x22*x33 + x12*x23*x31 + x13*x21*x32 - x13*x22*x31 - x11 * x23*x32 - x12*x21*x33;
+
+    c11 = (x22*x33 - x23*x32);
+    c12 = -(x21*x33 - x23*x31);
+    c13 = (x21*x32 - x22*x31);
+
+    c21 = -(x12*x33 - x13*x32); 
+    c22 = (x11*x33 - x13*x31);
+    c23 = -(x11*x32 - x12*x31);
+
+    c31 = (x12*x23 - x13*x22);
+    c32 = -(x11*x23 - x13*x21);
+    c33 = (x11*x22 - x12*x21);
+
+    x11 = (1/det) * c11;
+    x12 = (1/det) * c21;
+    x13 = (1/det) * c31;
+    
+    x21 = (1/det) * c12;
+    x22 = (1/det) * c22;
+    x23 = (1/det) * c32;
+
+    x31 = (1/det) * c13;
+    x32 = (1/det) * c23;
+    x33 = (1/det) * c33;
+    } 
+
+    calculaPotencia(1, 1, 1, 0, 1);
 }
 
 function calculaQR() {
