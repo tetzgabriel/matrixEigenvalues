@@ -63,11 +63,13 @@ function calcula() {
     } else if (calculo == "qr") {
 
         resetAntAprox();
-        calculaQR();
+        calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33);
     } else {
         document.getElementById("error").style.display = "block";
     }
 }
+
+
 
 function calculaPotencia(y1, y2, y3, k, p) {
     var z1,z2,z3;
@@ -218,14 +220,140 @@ function calculaInversa() {
     calculaPotencia(1, 1, 1, 0, 1);
 }
 
-function calculaQR() {
-    var result;
+function calculaSen(xqp, xpp) { //xqp eh a posicao que queremos transformar em 0; (q linha, p coluna).
+    return xqp/Math.sqrt(Math.pow(xpp,2) + Math.pow(xqp,2));
+}
 
-    showResult(result, 0, 0, 0);
+function calculaCos(x, y) {
+    return xpp/Math.sqrt(Math.pow(xpp,2) + Math.pow(xqp,2));
+}
+
+function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
+    
+    var a;
+    var u1, u2, u3;
+
+    a = math.matrix(
+        [ x11, x12, x13], 
+        [ x21, x22, x23], 
+        [ x31, x32, x33]
+        );
+
+    var s, c;
+
+    //gerar as tabelas U's
+    if(math.subset(a, math.index(1,0)) >= precisao){
+        s = calculaSen(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
+        c = calculaCos(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
+
+        u1 = math.matrix(
+            [ c, s, 0],
+            [-s, c, 0],
+            [ 0, 0, 1]
+        );
+
+        a = math.multiply(u1, a);
+    } else { 
+        if(math.subset(a, math.index(1,0)) == 0){
+            u1 = math.identity(3);
+        } else {
+            s = calculaSen(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
+            c = calculaCos(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
+    
+            u1 = math.matrix(
+                [ c, s, 0],
+                [-s, c, 0],
+                [ 0, 0, 1]
+            );
+        }
+    }
+
+    if(math.subset(a, math.index(2,0)) >= precisao){
+        s = calculaSen(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
+        c = calculaCos(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
+
+        u2 = math.matrix(
+            [ c, 0, s],
+            [ 0, 1, 0],
+            [-s, 0, c]
+        );
+
+        a = math.multiply(u2, a);
+    } else { 
+        if(math.subset(a, math.index(2,0)) == 0){
+            u2 = math.identity(3);
+        } else {
+            s = calculaSen(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
+            c = calculaCos(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
+
+            u2 = math.matrix(
+                [ c, 0, s],
+                [ 0, 1, 0],
+                [-s, 0, c]
+            );
+        }
+    }
+
+    if(math.subset(a, math.index(2,1)) >= precisao){
+        s = calculaSen(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
+        c = calculaCos(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
+
+        u3 = math.matrix(
+            [ 1, 0, 0],
+            [ 0, c, s],
+            [ 0,-s, c]
+        );
+
+        a = math.multiply(u3, a);
+    } else { 
+        if(math.subset(a, math.index(2,1)) == 0){
+            u3 = math.identity(3);
+        } else { 
+            s = calculaSen(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
+            c = calculaCos(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
+
+            u3 = math.matrix(
+                [ 1, 0, 0],
+                [ 0, c, s],
+                [ 0,-s, c]
+            );
+        }
+ 
+    }
+
+    var r = math.zeros(3, 3), q = math.zeros(3, 3);
+
+    r = math.multiply(math.multiply(math.multiply(u1, u2), u3), a); // r = u1*u2*u3*a;
+    q = math.multiply(math.multiply(math.transpose(u1), math.transpose(u2)), math.transpose(u3)); // q = u1t*u2t*u3t; t = transpose
+
+    a = math.multiply(r, q);
+
+    x11 = math.subset(a, math.index(0,0));
+    x12 = math.subset(a, math.index(0,1));
+    x13 = math.subset(a, math.index(0,2));
+    
+    x21 = math.subset(a, math.index(1,0));
+    x22 = math.subset(a, math.index(1,1));
+    x23 = math.subset(a, math.index(1,2));
+
+    x31 = math.subset(a, math.index(2,0));
+    x32 = math.subset(a, math.index(2,1));
+    x33 = math.subset(a, math.index(2,2)); 
+
+    if(x21 < precisao && x31 < precisao && x32 < precisao){
+        showResultQR(x11, x22, x33);
+    } else { 
+        calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33);
+    }
+}
+
+function showResultQR(autovalor1, autovalor2, autovalor3) {
+    document.getElementById("result-section").style.display = "block";
+    document.getElementById("result").textContent = "Autovalores: " + autovalor1 + ", " + autovalor2 + ", " + autovalor3;
 }
 
 function showResult(result, auto1, auto2, auto3) {
     document.getElementById("result-section").style.display = "block";
     document.getElementById("result").textContent = "Autovalores: " + result;
-    document.getElementById("autovet").textContent = "Autovalores: (" + auto1 + ", " + auto2 + ", " + auto3 + ")";
+    document.getElementById("autovet").textContent = "Autovetores: (" + auto1 + ", " + auto2 + ", " + auto3 + ")";
 }
