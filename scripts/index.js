@@ -224,7 +224,7 @@ function calculaSen(xqp, xpp) { //xqp eh a posicao que queremos transformar em 0
     return xqp/Math.sqrt(Math.pow(xpp,2) + Math.pow(xqp,2));
 }
 
-function calculaCos(x, y) {
+function calculaCos(xqp, xpp) {
     return xpp/Math.sqrt(Math.pow(xpp,2) + Math.pow(xqp,2));
 }
 
@@ -233,11 +233,11 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
     var a;
     var u1, u2, u3;
 
-    a = math.matrix(
+    a = math.matrix([
         [ x11, x12, x13], 
         [ x21, x22, x23], 
         [ x31, x32, x33]
-        );
+    ]);
 
     var s, c;
 
@@ -246,11 +246,11 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
         s = calculaSen(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
         c = calculaCos(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
 
-        u1 = math.matrix(
+        u1 = math.matrix([
             [ c, s, 0],
             [-s, c, 0],
             [ 0, 0, 1]
-        );
+        ]);
 
         a = math.multiply(u1, a);
     } else { 
@@ -260,11 +260,11 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
             s = calculaSen(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
             c = calculaCos(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
     
-            u1 = math.matrix(
+            u1 = math.matrix([
                 [ c, s, 0],
                 [-s, c, 0],
                 [ 0, 0, 1]
-            );
+            ]);
         }
     }
 
@@ -272,11 +272,11 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
         s = calculaSen(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
         c = calculaCos(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
 
-        u2 = math.matrix(
+        u2 = math.matrix([
             [ c, 0, s],
             [ 0, 1, 0],
             [-s, 0, c]
-        );
+        ]);
 
         a = math.multiply(u2, a);
     } else { 
@@ -286,11 +286,11 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
             s = calculaSen(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
             c = calculaCos(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
 
-            u2 = math.matrix(
+            u2 = math.matrix([
                 [ c, 0, s],
                 [ 0, 1, 0],
                 [-s, 0, c]
-            );
+            ]);
         }
     }
 
@@ -298,11 +298,11 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
         s = calculaSen(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
         c = calculaCos(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
 
-        u3 = math.matrix(
+        u3 = math.matrix([
             [ 1, 0, 0],
             [ 0, c, s],
             [ 0,-s, c]
-        );
+        ]);
 
         a = math.multiply(u3, a);
     } else { 
@@ -312,11 +312,11 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
             s = calculaSen(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
             c = calculaCos(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
 
-            u3 = math.matrix(
+            u3 = math.matrix([
                 [ 1, 0, 0],
                 [ 0, c, s],
                 [ 0,-s, c]
-            );
+            ]);
         }
  
     }
