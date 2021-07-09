@@ -232,6 +232,7 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
     
     var a;
     var u1, u2, u3;
+    var r = math.zeros(3, 3), q = math.zeros(3, 3);
 
     a = math.matrix([
         [ x11, x12, x13], 
@@ -242,6 +243,8 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
     var s, c;
 
     //gerar as tabelas U's
+
+    //zerando o primeiro elemento de baixo da diagonal principal
     if(math.subset(a, math.index(1,0)) >= precisao){
         s = calculaSen(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
         c = calculaCos(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
@@ -252,25 +255,17 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
             [ 0, 0, 1]
         ]);
 
-        a = math.multiply(u1, a);
+        r = math.multiply(u1, a);
     } else { 
         if(math.subset(a, math.index(1,0)) == 0){
             u1 = math.identity(3);
-        } else {
-            s = calculaSen(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
-            c = calculaCos(math.subset(a, math.index(1,0)), math.subset(a, math.index(0,0)));
-    
-            u1 = math.matrix([
-                [ c, s, 0],
-                [-s, c, 0],
-                [ 0, 0, 1]
-            ]);
-        }
+            r = a;
+        } 
     }
 
-    if(math.subset(a, math.index(2,0)) >= precisao){
-        s = calculaSen(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
-        c = calculaCos(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
+    if(math.subset(r, math.index(2,0)) >= precisao){
+        s = calculaSen(math.subset(r, math.index(2,0)), math.subset(r, math.index(0,0)));
+        c = calculaCos(math.subset(r, math.index(2,0)), math.subset(r, math.index(0,0)));
 
         u2 = math.matrix([
             [ c, 0, s],
@@ -278,25 +273,17 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
             [-s, 0, c]
         ]);
 
-        a = math.multiply(u2, a);
-    } else { 
-        if(math.subset(a, math.index(2,0)) == 0){
-            u2 = math.identity(3);
-        } else {
-            s = calculaSen(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
-            c = calculaCos(math.subset(a, math.index(2,0)), math.subset(a, math.index(0,0)));
+        r = math.multiply(u2, r);
 
-            u2 = math.matrix([
-                [ c, 0, s],
-                [ 0, 1, 0],
-                [-s, 0, c]
-            ]);
-        }
+    } else { 
+        if(math.subset(r, math.index(2,0)) == 0){
+            u2 = math.identity(3);
+        } 
     }
 
-    if(math.subset(a, math.index(2,1)) >= precisao){
-        s = calculaSen(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
-        c = calculaCos(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
+    if(math.subset(r, math.index(2,1)) >= precisao){
+        s = calculaSen(math.subset(r, math.index(2,1)), math.subset(r, math.index(1,1)));
+        c = calculaCos(math.subset(r, math.index(2,1)), math.subset(r, math.index(1,1)));
 
         u3 = math.matrix([
             [ 1, 0, 0],
@@ -304,27 +291,41 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
             [ 0,-s, c]
         ]);
 
-        a = math.multiply(u3, a);
+        r = math.multiply(u3, r);
     } else { 
-        if(math.subset(a, math.index(2,1)) == 0){
+        if(math.subset(r, math.index(2,1)) == 0){
             u3 = math.identity(3);
-        } else { 
-            s = calculaSen(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
-            c = calculaCos(math.subset(a, math.index(2,1)), math.subset(a, math.index(1,1)));
+        } 
 
-            u3 = math.matrix([
-                [ 1, 0, 0],
-                [ 0, c, s],
-                [ 0,-s, c]
-            ]);
-        }
- 
     }
 
-    var r = math.zeros(3, 3), q = math.zeros(3, 3);
+    r = math.multiply(math.multiply(math.multiply(u3,u2),u1),a) //r = u3*u2*u1*a;
 
-    r = math.multiply(math.multiply(math.multiply(u1, u2), u3), a); // r = u1*u2*u3*a;
+    console.log('r11:  ' + math.subset(r, math.index(0,0)));
+    console.log('r12:  ' + math.subset(r, math.index(0,1)));
+    console.log('r12:  ' + math.subset(r, math.index(0,2)));
+
+    console.log('r21:  ' + math.subset(r, math.index(1,0)));
+    console.log('r22:  ' + math.subset(r, math.index(1,1)));
+    console.log('r23:  ' + math.subset(r, math.index(1,2)));
+
+    console.log('r31:  ' + math.subset(r, math.index(2,0)));
+    console.log('r32:  ' + math.subset(r, math.index(2,1)));
+    console.log('r33:  ' + math.subset(r, math.index(2,2)));
+
     q = math.multiply(math.multiply(math.transpose(u1), math.transpose(u2)), math.transpose(u3)); // q = u1t*u2t*u3t; t = transpose
+
+    console.log('q11:  ' + math.subset(q, math.index(0,0)));
+    console.log('q12:  ' + math.subset(q, math.index(0,1)));
+    console.log('q12:  ' + math.subset(q, math.index(0,2)));
+
+    console.log('q21:  ' + math.subset(q, math.index(1,0)));
+    console.log('q22:  ' + math.subset(q, math.index(1,1)));
+    console.log('q23:  ' + math.subset(q, math.index(1,2)));
+
+    console.log('q31:  ' + math.subset(q, math.index(2,0)));
+    console.log('q32:  ' + math.subset(q, math.index(2,1)));
+    console.log('q33:  ' + math.subset(q, math.index(2,2)));
 
     a = math.multiply(r, q);
 
