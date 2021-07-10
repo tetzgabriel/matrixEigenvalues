@@ -12,7 +12,7 @@ var x32;
 var x33;
 
 var ant_aprox1;
-var ant_aprox2 ;
+var ant_aprox2;
 var ant_aprox3;
 
 function getPontos(selectObject) {
@@ -21,7 +21,7 @@ function getPontos(selectObject) {
 
 function getCalculo(selectObject) {
     calculo = selectObject.value;
-
+    
     createTable();
 }
 
@@ -373,10 +373,39 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
 function showResultQR(autovalor1, autovalor2, autovalor3) {
     document.getElementById("result-section").style.display = "block";
     document.getElementById("result").textContent = "Autovalores: " + autovalor1 + ", " + autovalor2 + ", " + autovalor3;
+    document.getElementById("autovet").style.display = "none";
 }
 
 function showResult(result, auto1, auto2, auto3) {
     document.getElementById("result-section").style.display = "block";
     document.getElementById("result").textContent = "Autovalores: " + result;
     document.getElementById("autovet").textContent = "Autovetores: (" + auto1 + ", " + auto2 + ", " + auto3 + ")";
+}
+
+function cleanGlobals() {
+    precisao = 0;
+
+    x11 = 0;
+    x12 = 0;
+    x13 = 0;
+    x21 = 0;
+    x22 = 0;
+    x23 = 0;
+    x31 = 0;
+    x32 = 0;
+    x33 = 0;
+
+    document.getElementById("x11").value = 0;
+    document.getElementById("x12").value = 0;
+    document.getElementById("x13").value = 0;
+    document.getElementById("x21").value = 0;
+    document.getElementById("x22").value = 0;
+    document.getElementById("x23").value = 0;
+    document.getElementById("x31").value = 0;
+    document.getElementById("x32").value = 0;
+    document.getElementById("x33").value = 0;
+
+    ant_aprox1 = 0;
+    ant_aprox2 = 0;
+    ant_aprox3 = 0;
 }
