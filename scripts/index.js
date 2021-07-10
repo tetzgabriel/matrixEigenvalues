@@ -91,6 +91,8 @@ function calculaPotencia(y1, y2, y3, k, p, alpha, z1, z2, z3) {
         aprox2 =  z2/y2;
         aprox3 =  z3/y3;
 
+        alpha2 = Math.max(Math.abs(aprox1),Math.abs(aprox2),Math.abs(aprox3));
+
         erro1 = Math.abs((aprox1 - ant_aprox1))/Math.abs(aprox1);
         erro2 = Math.abs((aprox2 - ant_aprox2))/Math.abs(aprox2);
         erro3 = Math.abs((aprox3 - ant_aprox3))/Math.abs(aprox3);
@@ -111,9 +113,9 @@ function calculaPotencia(y1, y2, y3, k, p, alpha, z1, z2, z3) {
                 ant_aprox3 = aprox3;
 
                 if(p){
-                    calculaPotencia(y1, y2, y3, 1, 1);
+                    calculaPotencia(y1, y2, y3, 1, 1, alpha2, z1, z2, z3);
                 } else {
-                    calculaPotencia(y1, y2, y3, 1, 0);
+                    calculaPotencia(y1, y2, y3, 1, 0, alpha2, z1, z2, z3);
                 }
             }
         }
@@ -130,9 +132,9 @@ function calculaPotencia(y1, y2, y3, k, p, alpha, z1, z2, z3) {
                 ant_aprox2 = aprox2;
                 ant_aprox3 = aprox3;
                 if(p){
-                    calculaPotencia(y1, y2, y3, 1, 1);
+                    calculaPotencia(y1, y2, y3, 1, 1, alpha2, z1, z2, z3);
                 } else {
-                    calculaPotencia(y1, y2, y3, 1, 0);
+                    calculaPotencia(y1, y2, y3, 1, 0, alpha2, z1, z2, z3);
                 }
             }
         }
@@ -149,9 +151,9 @@ function calculaPotencia(y1, y2, y3, k, p, alpha, z1, z2, z3) {
                 ant_aprox2 = aprox2;
                 ant_aprox3 = aprox3;
                 if(p){
-                    calculaPotencia(y1, y2, y3, 1, 1);
+                    calculaPotencia(y1, y2, y3, 1, 1, alpha2, z1, z2, z3);
                 } else {
-                    calculaPotencia(y1, y2, y3, 1, 0);
+                    calculaPotencia(y1, y2, y3, 1, 0, alpha2, z1, z2, z3);
                 }
             }
         }
