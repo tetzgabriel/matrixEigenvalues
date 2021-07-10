@@ -55,7 +55,7 @@ function calcula() {
     if (calculo == "potencia") {
         
         resetAntAprox();
-        calculaPotencia(1, 1, 1, 0, 0);
+        calculaPotencia(1, 1, 1, 0, 0,0);
     } else if (calculo == "inversa") {
         
         resetAntAprox();
@@ -71,43 +71,29 @@ function calcula() {
 
 
 
-function calculaPotencia(y1, y2, y3, k, p) {
+function calculaPotencia(y1, y2, y3, k, p, alpha, z1, z2, z3) {
     var z1,z2,z3;
     var erro1, erro2, erro3;
     var alpha; 
 
-    z1 = (x11 * y1) + (x12 * y2) + (x13 * y3);
-    z2 = (x21 * y1) + (x22 * y2) + (x23 * y3);
-    z3 = (x31 * y1) + (x32 * y2) + (x33 * y3);
-      
-    if(Math.abs(z1) >= Math.abs(z2) && Math.abs(z1) >=Math.abs(z3)){
-        alpha = Math.abs(z1);
-        
-    }
-    if(Math.abs(z2) >= Math.abs(z1) && Math.abs(z2) >=Math.abs(z3)){
-        alpha = Math.abs(z2);
-    }
-    if(Math.abs(z3) >= Math.abs(z1) && Math.abs(z3) >=Math.abs(z2)){
-        alpha = Math.abs(z3);
-    }
-
-    y1 = (1/alpha) * z1;
-    y2 = (1/alpha) * z2;
-    y3 = (1/alpha) * z3;
-
-    aprox1 =  z1/y1;
-    aprox2 =  z2/y2;
-    aprox3 =  z3/y3;
 
     if(k){ // se NAO for a primeira iteracao
-        
-        erro1 = Math.abs((aprox1 - ant_aprox1));
-        erro2 = Math.abs((aprox2 - ant_aprox2));
-        erro3 = Math.abs((aprox3 - ant_aprox3));
 
-        erro1 = erro1/Math.abs(aprox1);
-        erro2 = erro2/Math.abs(aprox2);
-        erro3 = erro3/Math.abs(aprox3);
+        y1 = (1/alpha) * z1;
+        y2 = (1/alpha) * z2;
+        y3 = (1/alpha) * z3;
+
+        z1 = (x11 * y1) + (x12 * y2) + (x13 * y3);
+        z2 = (x21 * y1) + (x22 * y2) + (x23 * y3);
+        z3 = (x31 * y1) + (x32 * y2) + (x33 * y3);
+
+        aprox1 =  z1/y1;
+        aprox2 =  z2/y2;
+        aprox3 =  z3/y3;
+
+        erro1 = Math.abs((aprox1 - ant_aprox1))/Math.abs(aprox1);
+        erro2 = Math.abs((aprox2 - ant_aprox2))/Math.abs(aprox2);
+        erro3 = Math.abs((aprox3 - ant_aprox3))/Math.abs(aprox3);
 
         if(erro1 <= erro2 && erro1 <= erro3){
             if(erro1 < precisao){
@@ -171,13 +157,34 @@ function calculaPotencia(y1, y2, y3, k, p) {
         }
     } else { //se for a primeira iteracao
 
+        z1 = (x11 * y1) + (x12 * y2) + (x13 * y3);
+        z2 = (x21 * y1) + (x22 * y2) + (x23 * y3);
+        z3 = (x31 * y1) + (x32 * y2) + (x33 * y3);
+        
+        alpha = Math.max(Math.abs(z1),Math.abs(z2),Math.abs(z3))
+
+        y1 = (1/alpha) * z1;
+        y2 = (1/alpha) * z2;
+        y3 = (1/alpha) * z3;
+
+        z1 = (x11 * y1) + (x12 * y2) + (x13 * y3);
+        z2 = (x21 * y1) + (x22 * y2) + (x23 * y3);
+        z3 = (x31 * y1) + (x32 * y2) + (x33 * y3);
+
+        aprox1 =  z1/y1;
+        aprox2 =  z2/y2;
+        aprox3 =  z3/y3;
+
         ant_aprox1 = aprox1;
         ant_aprox2 = aprox2;
         ant_aprox3 = aprox3;
+
+        alpha2 = Math.max(Math.abs(aprox1),Math.abs(aprox2),Math.abs(aprox3))
+
         if(p){
-            calculaPotencia(y1, y2, y3, 1, 1);
+            calculaPotencia(y1, y2, y3, 1, 1, alpha2, z1, z2, z3);
         } else {
-            calculaPotencia(y1, y2, y3, 1, 0);
+            calculaPotencia(y1, y2, y3, 1, 0, alpha2, z1, z2, z3);
         }
     }
 
@@ -217,7 +224,7 @@ function calculaInversa() {
     x33 = (1/det) * c33;
     } 
 
-    calculaPotencia(1, 1, 1, 0, 1);
+    calculaPotencia(1, 1, 1, 0, 1, 0, 0, 0);
 }
 
 function calculaSen(xqp, xpp) { //xqp eh a posicao que queremos transformar em 0; (q linha, p coluna).
@@ -328,6 +335,19 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
     console.log('q33:  ' + math.subset(q, math.index(2,2)));
 
     a = math.multiply(r, q);
+
+    var resultadobom;
+
+    resultadobom = math.subset(q, math.index(0,0)) * math.subset(r, math.index(0,0)) + math.subset(q, math.index(1,0)) * math.subset(r, math.index(0,1)) + math.subset(q, math.index(2,0)) * math.subset(r, math.index(0,2))
+
+    console.log('RESULTADO QUE DA: ' + resultadobom);
+
+    resultadobom = 0.8944 * 2.2360 + 0.4472 * 1.316;
+    console.log('RESULTADO QUE QUERO: ' + resultadobom);
+
+    console.log(math.subset(q, math.index(0,0)) + '*' + math.subset(r, math.index(0,0)) + ' + ' + math.subset(q, math.index(1,0)) + 
+    '*'+ math.subset(r, math.index(0,1)) + ' +  ' + math.subset(q, math.index(2,0)) + '*' + math.subset(r, math.index(0,2)) + 
+    ' = '+ math.subset(a, math.index(0,0)));
 
     x11 = math.subset(a, math.index(0,0));
     x12 = math.subset(a, math.index(0,1));
