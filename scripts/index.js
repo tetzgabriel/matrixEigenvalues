@@ -42,31 +42,38 @@ function resetAntAprox() {
 }
 
 function calcula() {
-    x11 = document.getElementById("x11").value;
-    x12 = document.getElementById("x12").value;
-    x13 = document.getElementById("x13").value;
-    x21 = document.getElementById("x21").value;
-    x22 = document.getElementById("x22").value;
-    x23 = document.getElementById("x23").value;
-    x31 = document.getElementById("x31").value;
-    x32 = document.getElementById("x32").value;
-    x33 = document.getElementById("x33").value;
 
-    if (calculo == "potencia") {
-        
-        resetAntAprox();
-        calculaPotencia(1, 1, 1, 0, 0,0);
-    } else if (calculo == "inversa") {
-        
-        resetAntAprox();
-        calculaInversa();
-    } else if (calculo == "qr") {
+    if(precisao !== 0){
+        document.getElementById("error2").style.display = "none";
+        document.getElementById("error").style.display = "none";
+        x11 = document.getElementById("x11").value;
+        x12 = document.getElementById("x12").value;
+        x13 = document.getElementById("x13").value;
+        x21 = document.getElementById("x21").value;
+        x22 = document.getElementById("x22").value;
+        x23 = document.getElementById("x23").value;
+        x31 = document.getElementById("x31").value;
+        x32 = document.getElementById("x32").value;
+        x33 = document.getElementById("x33").value;
 
-        resetAntAprox();
-        calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33);
+        if (calculo == "potencia") {        
+            resetAntAprox();
+            calculaPotencia(1, 1, 1, 0, 0,0);
+        } else if (calculo == "inversa") {
+            
+            resetAntAprox();
+            calculaInversa();
+        } else if (calculo == "qr") {
+
+            resetAntAprox();
+            calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33);
+        } else {
+            document.getElementById("error").style.display = "block";
+        }
     } else {
-        document.getElementById("error").style.display = "block";
+        document.getElementById("error2").style.display = "block";
     }
+    
 }
 
 
