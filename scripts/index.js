@@ -76,8 +76,6 @@ function calcula() {
     
 }
 
-
-
 function calculaPotencia(y1, y2, y3, k, p, alpha, z1, z2, z3) {
     var z1,z2,z3;
     var erro1, erro2, erro3;
