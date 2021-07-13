@@ -383,10 +383,8 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
 
         r = math.multiply(u1, a);
     } else { 
-        if(math.subset(a, math.index(1,0)) == 0){
-            u1 = math.identity(3);
-            r = a;
-        } 
+        u1 = math.identity(3);
+        r = a;
     }
 
     if(math.subset(r, math.index(2,0)) >= precisao){
@@ -402,9 +400,9 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
         r = math.multiply(u2, r);
 
     } else { 
-        if(math.subset(r, math.index(2,0)) == 0){
-            u2 = math.identity(3);
-        } 
+
+        u2 = math.identity(3);
+        
     }
 
     if(math.subset(r, math.index(2,1)) >= precisao){
@@ -419,13 +417,17 @@ function calculaQR(x11, x12, x13, x21, x22, x23, x31, x32, x33) {
 
         r = math.multiply(u3, r);
     } else { 
-        if(math.subset(r, math.index(2,1)) == 0){
-            u3 = math.identity(3);
-        } 
 
+        u3 = math.identity(3);
+        
     }
 
-    r = math.multiply(math.multiply(math.multiply(u3,u2),u1),a) //r = u3*u2*u1*a;
+    r = math.multiply(u3,u2);
+    r = math.multiply(r,u1);
+    r = math.multiply(r,a);
+    
+
+//    r = math.multiply(math.multiply(math.multiply(u3,u2),u1),a) //r = u3*u2*u1*a;
 
     console.log('r11:  ' + math.subset(r, math.index(0,0)));
     console.log('r12:  ' + math.subset(r, math.index(0,1)));
